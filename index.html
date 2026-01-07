@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplikasi Simpan Pinjam</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header img {
+            width: 45px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* MAIN */
+        main {
+            padding: 20px;
+        }
+
+        section {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        /* TABEL TRANSAKSI */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* FORM */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #34495e;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <img src="img/1.jpg"alt="logo">
+        <nav>
+            <ul>
+                <li><a href="#" onclick="tampil('beranda')">Beranda</a></li>
+                <li><a href="#" onclick="tampil('transaksi')">Transaksi</a></li>
+                <li><a href="#" onclick="tampil('profil')">Profil</a></li>
+                <li><a href="#" onclick="tampil('login')">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ISI -->
+    <main>
+
+        <!-- BERANDA -->
+        <section id="beranda" class="active">
+            <h2>Halaman Beranda</h2>
+            <p>Selamat datang di aplikasi simpan pinjam.</p>
+        </section>
+
+        <!-- TRANSAKSI -->
+        <section id="transaksi">
+            <h2>Data Transaksi</h2>
+
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Jenis</th>
+                    <th>Jumlah</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Budi</td>
+                    <td>Simpan</td>
+                    <td>Rp 1.000.000</td>
+                    <td>01-01-2026</td>
+                    <td>Berhasil</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Siti</td>
+                    <td>Pinjam</td>
+                    <td>Rp 2.500.000</td>
+                    <td>03-01-2026</td>
+                    <td>Menunggu</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Andi</td>
+                    <td>Simpan</td>
+                    <td>Rp 750.000</td>
+                    <td>05-01-2026</td>
+                    <td>Berhasil</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- PROFIL -->
+        <section id="profil">
+            <h2>Profil Admin</h2>
+            <p>Nama: Admin Simpan Pinjam</p>
+            <p>Email: admin@simpanpinjam.com</p>
+        </section>
+
+        <!-- LOGIN -->
+        <section id="login">
+            <h2>Login Admin</h2>
+            <form onsubmit="return validasi()">
+                <input type="text" id="user" placeholder="Username">
+                <input type="password" id="pass" placeholder="Password">
+                <button type="submit">Login</button>
+            </form>
+            <p id="pesan" style="color:red;"></p>
+        </section>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function tampil(id) {
+            const semua = document.querySelectorAll("section");
+            semua.forEach(s => s.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+
+        function validasi() {
+            let user = document.getElementById("user").value;
+            let pass = document.getElementById("pass").value;
+
+            if (user === "" || pass === "") {
+                document.getElementById("pesan").innerText =
+                    "Username dan password wajib diisi!";
+                return false;
+            }
+
+            alert("Login berhasil");
+            return false;
+        }
+    </script>
+
+</body>
+</html>
